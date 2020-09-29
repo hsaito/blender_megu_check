@@ -1,6 +1,6 @@
 bl_info = {
     "name": "Megu Shinonome Accessory Checker",
-    "description": "Checks the scene for the correctness for submitting for Megu Shinonome.",
+    "description": "Checks the correctness of the objects in the scene for Megu Shinonome submission.",
     "author": "Hideki Saito",
     "version": (0, 0, 1),
     "blender": (2, 80, 0),
@@ -29,13 +29,17 @@ class MeguAccessoryCheck(bpy.types.Operator):
 
         flagged = False
 
-        num_materials = len(bpy.data.scenes.data.materials)
+        num_materials = 0
 
         material_result = ""
 
-        if num_materials > 2:
+        for material_item in bpy.data.scenes.data.materials:
+            if material_item.is_grease_pencil == False and material_item.users > 0:
+                num_materials += 1
+        
+        if num_materials > 1:
             flagged = True
-            material_result = "Materials: NG. Max 1. You have"+str(num_materials - 1)
+            material_result = "Materials: NG. Max 1. You have "+str(num_materials)
         else:
             material_result = "Materials: OK"
 
