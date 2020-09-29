@@ -2,7 +2,7 @@ bl_info = {
     "name": "Megu Shinonome Accessory Checker",
     "description": "Checks the correctness of the objects in the scene for Megu Shinonome submission.",
     "author": "Hideki Saito",
-    "version": (0, 0, 1),
+    "version": (0, 0, 2),
     "blender": (2, 80, 0),
     "category": "Object",
     "location": "View3D > Object > Check for Megu Shinonome",
