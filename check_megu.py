@@ -2,7 +2,7 @@ bl_info = {
     "name": "Megu Shinonome Accessory Checker",
     "description": "Checks the correctness of the objects in the scene for Megu Shinonome submission.",
     "author": "Hideki Saito",
-    "version": (0, 0, 2),
+    "version": (0, 0, 3),
     "blender": (2, 80, 0),
     "category": "Object",
     "location": "View3D > Object > Check for Megu Shinonome",
@@ -45,7 +45,8 @@ class MeguAccessoryCheck(bpy.types.Operator):
 
         num_object = 0
         num_polygons = 0
-
+        num_ngons = 0
+        
         object_result = ""
         polygons_result = ""
 
@@ -53,7 +54,10 @@ class MeguAccessoryCheck(bpy.types.Operator):
             if object_item.type == 'MESH':
                 num_object += 1
                 num_polygons = sum(len(p.vertices) - 2 for p in object_item.data.polygons)
-                
+                mesh = object_item.data
+                for poly in mesh.polygons:
+                    if len(poly.vertices) > 4:
+                        num_ngons += 1
                 
         if num_object > 1:
             flagged = True
@@ -67,10 +71,17 @@ class MeguAccessoryCheck(bpy.types.Operator):
         else:
             polygons_result = "Polygons: OK"
             
-        if(flagged == False):
-            ShowMessageBox(material_result + " / " + object_result + " / " + polygons_result)
+        if num_ngons > 0:
+            flagged = True
+            ngons_result = "N-gons: NG. Max 0. You have "+str(num_ngons)
         else:
-            ShowMessageBox(material_result + " / " + object_result + " / " + polygons_result, 'ERROR')
+            ngons_result = "N-gons: OK"
+
+        
+        if(flagged == False):
+            ShowMessageBox(material_result + " / " + object_result + " / " + polygons_result + " / " + ngons_result)
+        else:
+            ShowMessageBox(material_result + " / " + object_result + " / " + polygons_result + " / " + ngons_result, 'ERROR')
             
         return {'FINISHED'}
         
