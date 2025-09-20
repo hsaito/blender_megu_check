@@ -15,15 +15,11 @@ license = "GPL-3.0-or-later"
 
 # Optional: links for users
 website = "https://hidekisaito.com"
-documentation = "https://github.com/hsaito/blender_megu_check"
+documentation = "https://github.com/hsaito/blender_megu_check/blob/master/README.md"
 tracker = "https://github.com/hsaito/blender_megu_check/issues"
 
 # Tags help with discoverability
-tags = ["UI", "Workflow", "Productivity"]
+tags = ["Workflow", "Productivity", "Megu Shinonome", "Validation"]
 
 # Optional: list of platforms if relevant
 platforms = ["windows", "macos", "linux"]
-
-# Optional: dependencies on other extensions
-[dependencies]
-"another_addon" = ">=1.2.0"
