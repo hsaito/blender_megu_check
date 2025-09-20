@@ -2,7 +2,7 @@ bl_info = {
     "name": "Megu Shinonome Accessory Checker (Panel)",
     "description": "Displays scene checks for Megu Shinonome submission in a UI panel.",
     "author": "Hideki Saito",
-    "version": (0, 0, 4),
+    "version": (1, 0, 0),
     "blender": (2, 80, 0),
     "category": "Object",
     "location": "View3D > Sidebar > Megu Check",
