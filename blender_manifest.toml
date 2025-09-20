@@ -3,8 +3,9 @@ schema_version = "1.0.0"
 
 id = "megu_accessory_check"
 version = "1.0.0"
-name = "My Cool Add-on"
-tagline = "Displays scene checks for Megu Shinonome submission in a UI panel"
+name = "Megu Shinonome Accessory Checker"
+tagline = "Displays checks for Megu Shinonome submission in a UI panel"
+type = "add-on"
 maintainer = "Hideki Saito <hidekis@gmail.com>"
 
 # Blender versions this add-on supports
@@ -20,6 +21,3 @@ tracker = "https://github.com/hsaito/blender_megu_check/issues"
 
 # Tags help with discoverability
 tags = ["Workflow", "Productivity", "Megu Shinonome", "Validation"]
-
-# Optional: list of platforms if relevant
-platforms = ["windows-x64", "macos", "linux-x64"]
