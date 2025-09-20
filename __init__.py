@@ -1,5 +1,5 @@
 bl_info = {
-    "name": "Megu Shinonome Accessory Checker (Panel)",
+    "name": "Megu Shinonome Accessory Checker",
     "description": "Displays scene checks for Megu Shinonome submission in a UI panel.",
     "author": "Hideki Saito",
     "version": (1, 0, 0),

@@ -12,7 +12,7 @@ maintainer = "Hideki Saito <hidekis@gmail.com>"
 blender_version_min = "4.20.0"
 
 # License must be SPDX identifier
-license = "SPDX:GPL-3.0-or-later"
+license = ['SPDX:GPL-3.0-or-later']
 
 # Optional: links for users
 website = "https://hidekisaito.com"
@@ -20,4 +20,4 @@ documentation = "https://github.com/hsaito/blender_megu_check/blob/master/README
 tracker = "https://github.com/hsaito/blender_megu_check/issues"
 
 # Tags help with discoverability
-tags = ["Workflow", "Productivity", "Megu Shinonome", "Validation"]
+tags = ["Modeling", "Mesh", "Object"]
