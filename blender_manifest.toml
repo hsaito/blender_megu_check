@@ -4,14 +4,14 @@ schema_version = "1.0.0"
 id = "megu_accessory_check"
 version = "1.0.0"
 name = "My Cool Add-on"
-tagline = "Displays scene checks for Megu Shinonome submission in a UI panel."
+tagline = "Displays scene checks for Megu Shinonome submission in a UI panel"
 maintainer = "Hideki Saito <hidekis@gmail.com>"
 
 # Blender versions this add-on supports
-blender_version_min = "2.80.0"
+blender_version_min = "4.20.0"
 
 # License must be SPDX identifier
-license = "GPL-3.0-or-later"
+license = "SPDX:GPL-3.0-or-later"
 
 # Optional: links for users
 website = "https://hidekisaito.com"
@@ -22,4 +22,4 @@ tracker = "https://github.com/hsaito/blender_megu_check/issues"
 tags = ["Workflow", "Productivity", "Megu Shinonome", "Validation"]
 
 # Optional: list of platforms if relevant
-platforms = ["windows", "macos", "linux"]
+platforms = ["windows-x64", "macos", "linux-x64"]
