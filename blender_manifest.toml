@@ -2,7 +2,7 @@
 schema_version = "1.0.0"
 
 id = "megu_accessory_check"
-version = "0.0.5"
+version = "1.0.0"
 name = "Megu Shinonome Accessory Checker"
 tagline = "Displays checks for Megu Shinonome submission in a UI panel"
 type = "add-on"
@@ -15,7 +15,7 @@ blender_version_min = "4.20.0"
 license = ['SPDX:GPL-3.0-or-later']
 
 # Optional: links for users
-website = "https://hidekisaito.com"
+website = "https://github.com/hsaito/blender_megu_check"
 documentation = "https://github.com/hsaito/blender_megu_check/blob/master/README.md"
 tracker = "https://github.com/hsaito/blender_megu_check/issues"
 
