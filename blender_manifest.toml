@@ -2,14 +2,14 @@
 schema_version = "1.0.0"
 
 id = "megu_accessory_check"
-version = "1.0.0"
+version = "1.0.1"
 name = "Megu Shinonome Accessory Checker"
 tagline = "Displays checks for Megu Shinonome submission in a UI panel"
 type = "add-on"
 maintainer = "Hideki Saito <hidekis@gmail.com>"
 
 # Blender versions this add-on supports
-blender_version_min = "4.20.0"
+blender_version_min = "4.2.0"
 
 # License must be SPDX identifier
 license = ['SPDX:GPL-3.0-or-later']

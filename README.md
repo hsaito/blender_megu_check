@@ -26,8 +26,8 @@ Usage
 
 Compatibility
 
-- The add-on declares Blender compatibility for 2.80 and above in `bl_info`.
-- Tested on Blender 2.80+ (basic API usage). If you encounter issues on newer Blender versions, please report them.
+- The add-on declares Blender compatibility for 4.2 and above in `bl_info`.
+- Tested on Blender 4.2+ (basic API usage). If you encounter issues on newer Blender versions, please report them.
 
 Development notes
 
