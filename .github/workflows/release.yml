@@ -15,15 +15,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Read add-on version
+        run: |
+          VERSION=$(grep -E '^version\s*=\s*"' blender_manifest.toml | sed -E 's/^version\s*=\s*"([^"]+)".*/\1/')
+          echo "ARCHIVE_NAME=blender_megu_check-${VERSION}.zip" >> "$GITHUB_ENV"
+
       - name: Prepare archive
         run: |
           mkdir -p staging/blender_megu_check
           git archive HEAD | tar -x -C staging/blender_megu_check
           cd staging
-          zip -r ../blender_megu_check.zip blender_megu_check
+          zip -r "../${ARCHIVE_NAME}" blender_megu_check
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: blender_megu_check.zip
+          files: ${{ env.ARCHIVE_NAME }}
           generate_release_notes: true
