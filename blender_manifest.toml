@@ -2,7 +2,7 @@
 schema_version = "1.0.0"
 
 id = "megu_accessory_check"
-version = "1.0.0"
+version = "1.0.1"
 name = "Megu Shinonome Accessory Checker"
 tagline = "Displays checks for Megu Shinonome submission in a UI panel"
 type = "add-on"
