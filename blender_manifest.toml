@@ -9,7 +9,7 @@ type = "add-on"
 maintainer = "Hideki Saito <hidekis@gmail.com>"
 
 # Blender versions this add-on supports
-blender_version_min = "4.20.0"
+blender_version_min = "4.2.0"
 
 # License must be SPDX identifier
 license = ['SPDX:GPL-3.0-or-later']
