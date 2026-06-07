@@ -2,7 +2,7 @@ bl_info = {
     "name": "Megu Shinonome Accessory Checker",
     "description": "Displays scene checks for Megu Shinonome submission in a UI panel.",
     "author": "Hideki Saito",
-    "version": (1, 0, 1),
+    "version": (1, 1, 0),
     "blender": (2, 80, 0),
     "category": "Object",
     "location": "View3D > Sidebar > Megu Check",
@@ -10,6 +10,7 @@ bl_info = {
 }
 
 import bpy
+from bpy.app.translations import pgettext_iface as _
 
 def check_megu():
     """
@@ -93,40 +94,58 @@ class VIEW3D_PT_megu_accessory_check(bpy.types.Panel):
         box = layout.box()
         # Materials
         if res["material_ok"]:
-            box.label(text=f"Materials: OK (assigned to objects: {res['num_materials']})", icon='CHECKMARK')
+            box.label(text=bpy.app.translations.pgettext(f"Materials: OK - assigned to objects: ")+str(res['num_materials']), icon='CHECKMARK')
         else:
-            box.label(text=f"Materials: NG — Max 1 (assigned to objects: {res['num_materials']})", icon='ERROR')
+            box.label(text=bpy.app.translations.pgettext(f"Materials: NG — Max 1 - assigned to objects: ")+str(res['num_materials']), icon='ERROR')
 
         # Objects
         if res["objects_ok"]:
-            box.label(text=f"Objects: OK (meshes: {res['num_objects']})", icon='CHECKMARK')
+            box.label(text=bpy.app.translations.pgettext(f"Objects: OK - meshes: ")+str(res['num_objects']), icon='CHECKMARK')
         else:
-            box.label(text=f"Objects: NG — Max 1 (meshes: {res['num_objects']})", icon='ERROR')
+            box.label(text=bpy.app.translations.pgettext(f"Objects: NG — Max 1 - meshes: ")+str(res['num_objects']), icon='ERROR')
 
         # Polygons
         if res["polygons_ok"]:
-            box.label(text=f"Polygons: OK (approx: {res['num_polygons']})", icon='CHECKMARK')
+            box.label(text=bpy.app.translations.pgettext(f"Polygons: OK - approx: ")+str(res['num_polygons']), icon='CHECKMARK')
         else:
-            box.label(text=f"Polygons: NG — Max 5000 (approx: {res['num_polygons']})", icon='ERROR')
+            box.label(text=bpy.app.translations.pgettext(f"Polygons: NG — Max 5000 - approx: ")+str(res['num_polygons']), icon='ERROR')
 
         # N-gons
         if res["ngons_ok"]:
-            box.label(text=f"N-gons: OK (count: {res['num_ngons']})", icon='CHECKMARK')
+            box.label(text=bpy.app.translations.pgettext(f"N-gons: OK - count: ")+str(res['num_ngons']), icon='CHECKMARK')
         else:
-            box.label(text=f"N-gons: NG — Max 0 (count: {res['num_ngons']})", icon='ERROR')
-
-        # No popup button is provided — panel only.
+            box.label(text=bpy.app.translations.pgettext(f"N-gons: NG — Max 0 - count: ")+str(res['num_ngons']), icon='ERROR')
 
 
 classes = (
     VIEW3D_PT_megu_accessory_check,
 )
 
+translation_dict = {
+    "ja_JP": {
+        # Operator ラベル・説明
+        ("*", "Issues found"): "問題が見つかりました",
+        ("*", "All checks OK"): "すべてのチェックがOK",
+        ("*", "Materials: OK - assigned to objects: "): "マテリアル: OK - オブジェクトに割り当てられている数: ",
+        ("*", "Materials: NG — Max 1 - assigned to objects: "): "マテリアル: NG — 最大1 - オブジェクトに割り当てられている数: ",
+        ("*", "Objects: OK - meshes: "): "オブジェクト: OK - メッシュ数: ",
+        ("*", "Objects: NG — Max 1 - meshes: "): "オブジェクト: NG — 最大1 - メッシュ数: ",
+        ("*", "Polygons: OK - approx: "): "ポリゴン: OK - 概算: ",
+        ("*", "Polygons: NG — Max 5000 - approx: "): "ポリゴン: NG — 最大5000 - 概算: ",
+        ("*", "N-gons: OK - count: "): "N-ゴン: OK - 数: ",
+        ("*", "N-gons: NG — Max 0 - count: "): "N-ゴン: NG — 最大0 - 数: ",
+        ("*", "Megu Shinonome Check"): "東雲めぐチェック",
+    }
+}
+
+
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
+    bpy.app.translations.register(__name__, translation_dict)
 
 def unregister():
+    bpy.app.translations.unregister(__name__)
     for cls in reversed(classes):
         bpy.utils.unregister_class(cls)
 
