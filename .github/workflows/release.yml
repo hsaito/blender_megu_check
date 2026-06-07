@@ -1,34 +1,56 @@
-name: Release
+name: Package Blender Addon
 
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - "v*"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  release:
+  package:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Read add-on version
+      - name: Read version from __init__.py
+        id: version
         run: |
-          VERSION=$(grep -E '^version\s*=\s*"' blender_manifest.toml | sed -E 's/^version\s*=\s*"([^"]+)".*/\1/')
-          echo "ARCHIVE_NAME=blender_megu_check-${VERSION}.zip" >> "$GITHUB_ENV"
+          VERSION=$(python3 - <<'EOF'
+          import ast, sys
+          with open("blender_megu_check/__init__.py") as f:
+              tree = ast.parse(f.read())
+          for node in ast.walk(tree):
+              if isinstance(node, ast.Assign):
+                  for t in node.targets:
+                      if isinstance(t, ast.Name) and t.id == "bl_info":
+                          d = ast.literal_eval(node.value)
+                          print(".".join(str(x) for x in d["version"]))
+                          sys.exit(0)
+          EOF
+          )
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Prepare archive
+      - name: Build zip package
         run: |
-          mkdir -p staging/blender_megu_check
-          git archive HEAD | tar -x -C staging/blender_megu_check
-          cd staging
-          zip -r "../${ARCHIVE_NAME}" blender_megu_check
+          mkdir -p dist
+          zip -r dist/blender-megu_check-${{ steps.version.outputs.version }}.zip \
+            blender-megu_check/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: blender-megu_check-${{ steps.version.outputs.version }}
+          path: dist/blender-megu_check-${{ steps.version.outputs.version }}.zip
+          retention-days: 90
 
       - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ env.ARCHIVE_NAME }}
+          files: dist/blender-megu_check-${{ steps.version.outputs.version }}.zip
           generate_release_notes: true
